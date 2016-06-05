@@ -23,7 +23,7 @@
 
 using namespace std;
 
-#include <libpng/png.h>
+#include <libpng14/png.h>
 
 #include "rgb_image.h"
 
