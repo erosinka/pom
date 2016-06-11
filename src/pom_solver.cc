@@ -39,7 +39,7 @@ POMSolver::POMSolver(Room *room) : neg(room->view_width(), room->view_height()),
 
 void POMSolver::compute_average_images(int camera,
                                        Room *room,
-                                       Vector<scalar_t> *proba_absence) {
+                                       std::vector<scalar_t> *proba_absence) {
   neg.fill(1.0);
 
   for(int n = 0; n < room->nb_positions(); n++) if((*proba_absence)[n] <= globals::global_proba_ignored) {
@@ -54,8 +54,8 @@ void POMSolver::compute_average_images(int camera,
 void POMSolver::add_log_ratio(int camera,
                               Room *room,
                               ProbaView *view,
-                              Vector<scalar_t> *proba_absence,
-                              Vector<scalar_t> *sum) {
+                              std::vector<scalar_t> *proba_absence,
+                              std::vector<scalar_t> *sum) {
 
   // Computes the average on the complete picture
 
@@ -93,16 +93,16 @@ void POMSolver::add_log_ratio(int camera,
 }
 
 void POMSolver::solve(Room *room,
-                      Vector<scalar_t> *prior,
-                      Vector<ProbaView *> *views,
-                      Vector<scalar_t> *proba_presence,
+                      std::vector<scalar_t> *prior,
+                      std::vector<ProbaView *> *views,
+                      std::vector<scalar_t> *proba_presence,
                       int nb_frame,
                       char *convergence_file_format) {
 
-  Vector<scalar_t> log_prior_ratio(prior->length());
+  std::vector<scalar_t> log_prior_ratio(prior->size());
 
-  Vector<scalar_t> sum(room->nb_positions());
-  Vector<scalar_t> proba_absence(room->nb_positions());
+  std::vector<scalar_t> sum(room->nb_positions());
+  std::vector<scalar_t> proba_absence(room->nb_positions());
 
   for(int i  = 0; i < room->nb_positions(); i++) {
     log_prior_ratio[i] = log((*prior)[i]/(1 - (*prior)[i]));

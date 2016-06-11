@@ -115,6 +115,7 @@ public:
       os << heads[i][j] << ((i < width-1) ? ' ' : '\n');
   }
 
+// not used
   inline void print_for_gnuplot(std::ostream &os) const {
     for(int i = 0; i < width; i++) {
       for(int j = 0; j < height; j++)

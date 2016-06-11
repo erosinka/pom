@@ -37,7 +37,7 @@ Room::~Room() {
 void Room::save_stochastic_view(char *name,
                                 int n_camera,
                                 const ProbaView *view,
-                                const Vector<scalar_t> *proba_presence) const  {
+                                const std::vector<scalar_t> *proba_presence) const  {
 
   RGBImage image(view->get_width(), view->get_height());
 

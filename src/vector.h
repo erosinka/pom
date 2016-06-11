@@ -42,6 +42,7 @@ public:
 
   inline int length() const { return size; }
 
+// not used? 
   inline Vector(std::istream &is) {
     is.read((char *) &size, sizeof(size));
     content = new T[size];
@@ -60,12 +61,14 @@ public:
 #endif
   }
 
+// not used
   inline void load(std::istream &is) {
     is.read((char *) &size, sizeof(size));
     resize(size);
     is.read((char *) content, sizeof(T) * size);
   }
 
+// implement
   inline void save(std::ostream &os) const {
     os.write((char *) &size, sizeof(size));
     os.write((char *) content, sizeof(T) * size);
@@ -117,16 +120,18 @@ public:
     return content[k];
   }
 
+// not used
   inline T norme() const {
     T s = 0;
     for(int i = 0; i<size; i++) s += content[i] * content[i];
     return sqrt(s);
   }
-
+// not used
   inline void print(std::ostream &os) const {
     for(int i = 0; i < size; i++) os << content[i] << ((i < size - 1) ? " " : "\n");
   }
 
+// not used
   inline void print_for_gnuplot(std::ostream &os) const {
     for(int i = 0; i < size; i++) os << content[i] << "\n";
   }

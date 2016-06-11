@@ -20,9 +20,10 @@
 #ifndef ROOM_H
 #define ROOM_H
 
+#include <vector>
 #include "rectangle.h"
 #include "proba_view.h"
-#include "vector.h"
+//#include "vector.h"
 
 using namespace std;
 
@@ -51,7 +52,7 @@ public:
   }
 
   void save_stochastic_view(char *name, int ncam, const ProbaView *view,
-                            const Vector<scalar_t> *proba_presence) const;
+                            const std::vector<scalar_t> *proba_presence) const;
 };
 
 #endif

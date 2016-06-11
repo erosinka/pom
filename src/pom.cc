@@ -1,4 +1,3 @@
-
 //////////////////////////////////////////////////////////////////////////////////
 // This program is free software: you can redistribute it and/or modify         //
 // it under the terms of the version 3 of the GNU General Public License        //
@@ -24,7 +23,7 @@ using namespace std;
 
 #include "misc.h"
 #include "global.h"
-#include "vector.h"
+//#include "vector.h"
 #include "room.h"
 #include "pom_solver.h"
 
@@ -73,7 +72,7 @@ int main(int argc, char **argv) {
   char buffer[buffer_size], token[buffer_size];
 
   int line_number = 0;
-  Vector<ProbaView *> *proba_views = 0;
+  std::vector<ProbaView *> *proba_views = 0;
 
   Room *room = 0;
 
@@ -112,8 +111,8 @@ int main(int argc, char **argv) {
       }
 
       room = new Room(view_width, view_height, nb_cameras, nb_positions);
-      proba_views = new Vector<ProbaView *>(nb_cameras);
-      for(int c = 0; c < proba_views->length(); c++)
+      proba_views = new std::vector<ProbaView *>(nb_cameras);
+      for(int c = 0; c < proba_views->size(); c++)
         (*proba_views)[c] = new ProbaView(view_width, view_height);
     }
 
@@ -151,8 +150,8 @@ int main(int argc, char **argv) {
 
       POMSolver solver(room);
 
-      Vector<scalar_t> prior(room->nb_positions());
-      Vector<scalar_t> proba_presence(room->nb_positions());
+      std::vector<scalar_t> prior(room->nb_positions());
+      std::vector<scalar_t> proba_presence(room->nb_positions());
       for(int i = 0; i < room->nb_positions(); i++) prior[i] = globals::global_prior;
 
       if(strcmp(input_view_format, "") == 0) {
@@ -309,7 +308,7 @@ int main(int argc, char **argv) {
   }
 
   if(proba_views)
-    for(int c = 0; c < proba_views->length(); c++) delete (*proba_views)[c];
+    for(int c = 0; c < proba_views->size(); c++) delete (*proba_views)[c];
 
   delete proba_views;
   delete room;

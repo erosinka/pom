@@ -46,7 +46,7 @@ class POMSolver {
 
   void compute_average_images(int camera,
                               Room *room,
-                              Vector<scalar_t> *proba_absence);
+                              std::vector<scalar_t> *proba_absence);
 
   // Adds to every sum[i] the value log(P(X_i = 1 | V_camera) / P(X_i
   // = 0 | V_camera)), given the other P(X_j = 1 | V)
@@ -54,8 +54,8 @@ class POMSolver {
   void add_log_ratio(int camera,
                      Room *room,
                      ProbaView *view,
-                     Vector<scalar_t> *proba_absence,
-                     Vector<scalar_t> *sum);
+                     std::vector<scalar_t> *proba_absence,
+                     std::vector<scalar_t> *sum);
 
 public:
 
@@ -65,9 +65,9 @@ public:
   // to refresh proba_absence. Iterates as many times as specified.
 
   void solve(Room *room,
-             Vector<scalar_t> *prior,
-             Vector<ProbaView *> *views,
-             Vector<scalar_t> *proba_presence,
+             std::vector<scalar_t> *prior,
+             std::vector<ProbaView *> *views,
+             std::vector<scalar_t> *proba_presence,
              int nb_frame,
              char *convergence_file_format);
 };
