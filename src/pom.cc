@@ -153,7 +153,7 @@ int main(int argc, char **argv) {
 
       Vector<scalar_t> prior(room->nb_positions());
       Vector<scalar_t> proba_presence(room->nb_positions());
-      for(int i = 0; i < room->nb_positions(); i++) prior[i] = global_prior;
+      for(int i = 0; i < room->nb_positions(); i++) prior[i] = globals::global_prior;
 
       if(strcmp(input_view_format, "") == 0) {
         cerr << "You must specify the input view format." << endl;
@@ -260,44 +260,44 @@ int main(int argc, char **argv) {
     else if(strcmp(token, "PRIOR") == 0) {
       check_parameter(s, line_number, buffer);
       s = next_word(token, s, buffer_size);
-      global_prior = atof(token);
+      globals::global_prior = atof(token);
     }
 
     else if(strcmp(token, "SIGMA_IMAGE_DENSITY") == 0) {
       check_parameter(s, line_number, buffer);
       s = next_word(token, s, buffer_size);
-      global_sigma_image_density = atof(token);
+      globals::global_sigma_image_density = atof(token);
     }
 
     else if(strcmp(token, "SMOOTHING_COEFFICIENT") == 0) {
       check_parameter(s, line_number, buffer);
       s = next_word(token, s, buffer_size);
-      global_smoothing_coefficient = atof(token);
+      globals::global_smoothing_coefficient = atof(token);
     }
 
     else if(strcmp(token, "MAX_NB_SOLVER_ITERATIONS") == 0) {
       check_parameter(s, line_number, buffer);
       s = next_word(token, s, buffer_size);
-      global_max_nb_solver_iterations = atoi(token);
+      globals::global_max_nb_solver_iterations = atoi(token);
     }
 
     else if(strcmp(token, "ERROR_MAX") == 0) {
       check_parameter(s, line_number, buffer);
       s = next_word(token, s, buffer_size);
-      global_error_max = atof(token);
+      globals::global_error_max = atof(token);
     }
 
     else if(strcmp(token, "NB_STABLE_ERROR_FOR_CONVERGENCE") == 0) {
       check_parameter(s, line_number, buffer);
       s = next_word(token, s, buffer_size);
-      global_nb_stable_error_for_convergence = atoi(token);
+      globals::global_nb_stable_error_for_convergence = atoi(token);
     }
 
     else if(strcmp(token, "PROBA_IGNORED") == 0) {
       check_parameter(s, line_number, buffer);
       s = next_word(token, s, buffer_size);
-      global_proba_ignored = atof(token);
-      cout << "global_proba_ignored = " << global_proba_ignored << endl;
+      globals::global_proba_ignored = atof(token);
+      cout << "globals::global_proba_ignored = " << globals::global_proba_ignored << endl;
     }
 
     else if(strcmp(buffer, "") == 0 || buffer[0] == '#') { }

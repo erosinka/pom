@@ -22,33 +22,35 @@
 
 #include "misc.h"
 
+struct globals {
 // We used the same prior at every location, but POMSolver::solve
 // takes as parameter a vector of priors if you want
-extern scalar_t global_prior;
+static   scalar_t global_prior;// = 0.01;
 
 // The parameters of the Normal law for the conditional image density,
 // given the true state. Mu does not appear in the paper, sigma does.
-extern scalar_t global_mu_image_density;
-extern scalar_t global_sigma_image_density;
+static   scalar_t global_mu_image_density;// = 0.0;
+static   scalar_t global_sigma_image_density;// = 0.01;
 
 // When we iterate the solver, we smooth the estimate to prevent from
 // oscillating effects that tend to appear naturally
-extern scalar_t global_smoothing_coefficient;
+static   scalar_t global_smoothing_coefficient;// = 0.8;
 
 // Ugly parameters for defining the convergence of the solver. I guess
 // there are far better ways to do
 
 // Hard bound on the number of iterations
-extern int global_max_nb_solver_iterations;
+static   int global_max_nb_solver_iterations;// = 100;
 
 // What error is considered acceptable
-extern scalar_t global_error_max;
+static   scalar_t global_error_max;// = 1e-4;
 
 // How many steps under the global_error_max defines convergence
-extern int global_nb_stable_error_for_convergence;
+static   int global_nb_stable_error_for_convergence;// = 5;
 
 // If the probability of absence is greated than that, ignore the
 // avatar in the computation of the average image to save computation
-extern scalar_t global_proba_ignored;
+static   scalar_t global_proba_ignored;// = 1.00;
+};
 
 #endif

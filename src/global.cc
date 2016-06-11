@@ -19,6 +19,15 @@
 
 #include "global.h"
 
+scalar_t globals::global_prior = 0.01; 
+scalar_t globals::global_mu_image_density = 0.0;
+scalar_t globals::global_sigma_image_density = 0.01;
+scalar_t globals::global_smoothing_coefficient = 0.8;
+int globals::global_max_nb_solver_iterations = 100;
+scalar_t globals::global_error_max = 1e-4;
+int globals::global_nb_stable_error_for_convergence = 5;
+scalar_t globals::global_proba_ignored = 1.00;
+/*
 scalar_t global_prior = 0.01;
 scalar_t global_mu_image_density = 0.0;
 scalar_t global_sigma_image_density = 0.01;
@@ -27,4 +36,4 @@ int global_max_nb_solver_iterations = 100;
 scalar_t global_error_max = 1e-4;
 int global_nb_stable_error_for_convergence = 5;
 scalar_t global_proba_ignored = 1.00;
-
+*/

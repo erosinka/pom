@@ -32,7 +32,7 @@ POMSolver::POMSolver(Room *room) : neg(room->view_width(), room->view_height()),
                                    neg_view(room->view_width(), room->view_height()),
                                    ii_neg(room->view_width(), room->view_height()),
                                    ii_neg_view(room->view_width(), room->view_height()) {
-  global_difference.set(global_mu_image_density, global_sigma_image_density);
+  global_difference.set(globals::global_mu_image_density, globals::global_sigma_image_density);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ void POMSolver::compute_average_images(int camera,
                                        Vector<scalar_t> *proba_absence) {
   neg.fill(1.0);
 
-  for(int n = 0; n < room->nb_positions(); n++) if((*proba_absence)[n] <= global_proba_ignored) {
+  for(int n = 0; n < room->nb_positions(); n++) if((*proba_absence)[n] <= globals::global_proba_ignored) {
     Rectangle *r = room->avatar(camera, n);
     if(r->visible)
       neg.multiply_subarray(r->xmin, r->ymin, r->xmax + 1, r->ymax + 1, (*proba_absence)[n]);
@@ -111,7 +111,7 @@ void POMSolver::solve(Room *room,
 
   int nb_stab = 0;
 
-  for(int it = 0; (nb_stab < global_nb_stable_error_for_convergence) && (it < global_max_nb_solver_iterations); it++) {
+  for(int it = 0; (nb_stab < globals::global_nb_stable_error_for_convergence) && (it < globals::global_max_nb_solver_iterations); it++) {
 
     sum.clear();
     for(int c = 0; c < room->nb_cameras(); c++)
@@ -119,12 +119,12 @@ void POMSolver::solve(Room *room,
 
     scalar_t e = 0;
     for(int i = 0; i < room->nb_positions(); i++) {
-      scalar_t np = global_smoothing_coefficient * proba_absence[i] + (1 - global_smoothing_coefficient) / (1 + exp(log_prior_ratio[i] + sum[i]));
+      scalar_t np = globals::global_smoothing_coefficient * proba_absence[i] + (1 - globals::global_smoothing_coefficient) / (1 + exp(log_prior_ratio[i] + sum[i]));
       if(abs(proba_absence[i] - np) > e) e = abs(proba_absence[i] - np);
       proba_absence[i] = np;
     }
 
-    if(e < global_error_max) nb_stab++; else nb_stab = 0;
+    if(e < globals::global_error_max) nb_stab++; else nb_stab = 0;
 
     if(convergence_file_format) {
       char buffer[buffer_size];
