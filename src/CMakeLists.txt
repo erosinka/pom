@@ -1,4 +1,4 @@
-add_executable (pom pom.cc global.cc misc.cc normal_law.cc pom_solver.cc proba_view.cc rectangle.cc rgb_image.cc room.cc)
+add_executable (pom pom.cc global.cc misc.cc normal_law.cc pom_solver.cc proba_view.cc rgb_image.cc room.cc)
 set_target_properties(pom PROPERTIES COMPILE_FLAGS ${MY_COMPILE_FLAGS})
 
 #find_package(png 1.4.19 EXACT)

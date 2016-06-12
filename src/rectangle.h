@@ -17,9 +17,8 @@
 // Contact <pom@epfl.ch> for comments & bug reports                             //
 //////////////////////////////////////////////////////////////////////////////////
 
-class Rectangle {
-public:
+struct Rectangle {
   bool visible;
   int xmin, ymin, xmax, ymax;
-  Rectangle();
+  Rectangle(): visible(false), xmin(0), ymin(0), xmax(0), ymax(0) {};
 };
