@@ -22,7 +22,7 @@ addons:
     - g++-4.8
     - clang
     - libboost-all-dev
-    - libpng-14-all-dev
+    - libpng14-0
 before_script:
   - mkdir build
   - cd build
