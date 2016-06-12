@@ -22,11 +22,10 @@ addons:
     - g++-4.8
     - clang
     - libboost-all-dev
-    - libgmp-dev
 before_script:
   - mkdir build
   - cd build
-  - cmake -DVLI_TESTS=on ..
+  - cmake ..
 script:
   - make
   - make test
