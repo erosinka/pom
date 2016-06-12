@@ -3,6 +3,7 @@ project (pom)
 #find_package(png 1.4.19 EXACT)
 find_package(Boost REQUIRED unit_test_framework)
 
+include_directories("${PROJECT_SOURCE_DIR}/src")
 include(CTest)
 enable_testing()
 
