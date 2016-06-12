@@ -1,4 +1,13 @@
 
+PRE-INTRODUCTION
+----------------
+
+  POM code is used by me as a training example to clean-up the code, 
+  add unit tests and optimize some computations. The very first commit
+  represents the original code, all further changes were done by Elena 
+  Rosinskaya. There are some changes in this README.txt file also to 
+  explain how to compile and run the code.
+
 INTRODUCTION
 ------------
 
@@ -15,9 +24,9 @@ INTRODUCTION
 INSTALLATION AND TEST
 ---------------------
 
-  This program should compile by typing `make' on any standard
-  GNU/Linux system, as long as the libpng is installed with its header
-  files.
+  This program should compile by typing 'cmake ..' in the build directory 
+  on any standard GNU/Linux system, as long as the libpng 14 is installed 
+  with its header files.
 
   To run a simple test on the images provided in the archive just type
 
