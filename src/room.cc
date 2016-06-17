@@ -41,12 +41,12 @@ void Room::save_stochastic_view(char *name,
 
   RGBImage image(view->get_width(), view->get_height());
 
-  Array<scalar_t> proba_pixel_off(_view_width, _view_height);
+  Matrix<scalar_t> proba_pixel_off(_view_width, _view_height);
 
   for(int px = 0; px < _view_width; px++) for(int py = 0; py < _view_height; py++)
     proba_pixel_off(px, py) = 1.0;
 
-  Array<bool> dots(_view_width, _view_height);
+  Matrix<bool> dots(_view_width, _view_height);
   dots.clear();
 
   for(int n = 0; n < nb_positions(); n++) {

@@ -17,36 +17,36 @@
 // Contact <pom@epfl.ch> for comments & bug reports                             //
 //////////////////////////////////////////////////////////////////////////////////
 
-#ifndef INTEGRAL_ARRAY_H
-#define INTEGRAL_ARRAY_H
+#ifndef INTEGRAL_Matrix_H
+#define INTEGRAL_Matrix_H
 
 #include <iostream>
 
 using namespace std;
 
-#include "array.h"
+#include "Matrix.h"
 
 template <class T>
-class IntegralArray: public Array<T> {
+class IntegralArray: public Matrix<T> {
 public:
 
-  void compute(const Array<T> *m) {
-    T *v = Array<T>::content, *w = m->Array<T>::content;
-    for(int x = 0; x < Array<T>::height; x++) *(v++) = 0;
+  void compute(const Matrix<T> *m) {
+    T *v = Matrix<T>::content, *w = m->Matrix<T>::content;
+    for(int x = 0; x < Matrix<T>::height; x++) *(v++) = 0;
 
     register T sl;
-    for(int y = 1; y < Array<T>::width; y++) {
+    for(int y = 1; y < Matrix<T>::width; y++) {
       sl = 0; *(v++) = 0;
-      for(int x = 0; x < Array<T>::height - 1; x++) {
+      for(int x = 0; x < Matrix<T>::height - 1; x++) {
         sl += *(w++);
-        *(v++) = sl + *(v - Array<T>::height);
+        *(v++) = sl + *(v - Matrix<T>::height);
       }
     }
   }
 
-  IntegralArray(int w, int h) : Array<T>(w+1, h+1) { }
+  IntegralArray(int w, int h) : Matrix<T>(w+1, h+1) { }
 
-  IntegralArray(const Array<T> &m) : Array<T>(m->get_width() + 1, m->get_height() + 1) {
+  IntegralArray(const Matrix<T> &m) : Matrix<T>(m->get_width() + 1, m->get_height() + 1) {
     compute(m);
   }
 
@@ -55,10 +55,10 @@ public:
 
   inline T integral(int xmin, int ymin, int xmax, int ymax) const {
     ASSERT(xmin <= xmax && ymin <= ymax, "Inconsistent bounds for integral");
-    ASSERT(xmin >= 0 && xmax < Array<T>::width &&
-           ymin >= 0 && ymax < Array<T>::height, "Index out of bounds in Array::operator () const");
-    return Array<T>::heads[xmax][ymax] + Array<T>::heads[xmin][ymin]
-      - Array<T>::heads[xmax][ymin] - Array<T>::heads[xmin][ymax];
+    ASSERT(xmin >= 0 && xmax < Matrix<T>::width &&
+           ymin >= 0 && ymax < Matrix<T>::height, "Index out of bounds in Matrix::operator () const");
+    return Matrix<T>::heads[xmax][ymax] + Matrix<T>::heads[xmin][ymin]
+      - Matrix<T>::heads[xmax][ymin] - Matrix<T>::heads[xmin][ymax];
   }
 };
 

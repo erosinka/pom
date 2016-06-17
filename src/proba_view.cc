@@ -19,7 +19,7 @@
 
 #include "proba_view.h"
 
-ProbaView::ProbaView(int view_width, int view_height) : Array<scalar_t>(view_width, view_height) { }
+ProbaView::ProbaView(int view_width, int view_height) : Matrix<scalar_t>(view_width, view_height) { }
 
 void ProbaView::from_image(const RGBImage *image) {
   ASSERT(image->width() == width && image->height() == height,

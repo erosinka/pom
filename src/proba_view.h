@@ -21,10 +21,10 @@
 #define PROBA_VIEW_H
 
 #include "misc.h"
-#include "array.h"
+#include "matrix.h"
 #include "rgb_image.h"
 
-class ProbaView : public Array<scalar_t> {
+class ProbaView : public Matrix<scalar_t> {
 public:
   ProbaView(int view_width, int view_height);
 
